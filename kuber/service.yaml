@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: gcp-final-task
+spec:
+  selector:
+    app: gcp-final-task
+  ports:
+    - protocol: "TCP"
+      port: 8000
+      targetPort: 8000
+      nodePort: 31000
+  type: NodePort

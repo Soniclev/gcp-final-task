@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gcp-final-task
+  labels:
+    app: gcp-final-task
+spec:
+  containers:
+    - name: gcp-final-task
+      image: europe-central2-docker.pkg.dev/trusty-acre-367607/gcp-final-task/gcp:0.1
+      args:
+        - "--host=0.0.0.0"
+      ports:
+        - name: http
+          containerPort: 8000
+      resources:
+        limits:
+          cpu: 0.5
+          memory: "100Mi"
