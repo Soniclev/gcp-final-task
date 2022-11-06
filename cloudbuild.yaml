@@ -7,6 +7,11 @@ steps:
            'europe-central2-docker.pkg.dev/${PROJECT_ID}/gcp-final-task/gcp:${SHORT_SHA}', '.']
   # [END cloudbuild_python_image_yaml]
 
+  # Test the built image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['run', '--rm',
+           'europe-central2-docker.pkg.dev/${PROJECT_ID}/gcp-final-task/gcp:${SHORT_SHA}', 'poetry', 'run', 'pytest']
+
   # [START cloudbuild_python_push_yaml]
   # Docker push to Google Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -15,5 +20,5 @@ steps:
 
 # Store images in Google Artifact Registry
 images:
-  - europe-central2-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY_REPO}/myimage:${SHORT_SHA}
+  - europe-central2-docker.pkg.dev/${PROJECT_ID}/gcp-final-task/gcp:${SHORT_SHA}
 # [END cloudbuild_python_yaml]

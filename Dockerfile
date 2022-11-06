@@ -13,6 +13,6 @@ ENV DATABASE=sqlite:///./sql_app.db
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN pip install poetry
 COPY poetry.lock pyproject.toml ./
-RUN poetry install --no-dev
+RUN poetry install
 COPY . ./
-ENTRYPOINT ["poetry", "run", "uvicorn", "src.main:app", "--host", "0.0.0.0"]
+CMD ["poetry", "run", "uvicorn", "src.main:app", "--host", "0.0.0.0"]
