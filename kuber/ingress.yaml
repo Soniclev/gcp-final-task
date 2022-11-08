@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gcp-final-task
+spec:
+  defaultBackend:
+    service:
+      name: gcp-final-task
+      port:
+        number: 8000
+
+---
+
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: gcp-final-task
+spec:
+  healthCheck:
+    checkIntervalSec: 15
+    type: HTTP
+    requestPath: /healthcheck
