@@ -1,24 +1,29 @@
 steps:
 
-  # [START cloudbuild_python_image_yaml]
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t',
            'europe-central2-docker.pkg.dev/${PROJECT_ID}/gcp-final-task/gcp:${SHORT_SHA}', '.']
-  # [END cloudbuild_python_image_yaml]
 
   # Test the built image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['run', '--rm',
            'europe-central2-docker.pkg.dev/${PROJECT_ID}/gcp-final-task/gcp:${SHORT_SHA}', 'poetry', 'run', 'pytest']
 
-  # [START cloudbuild_python_push_yaml]
   # Docker push to Google Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push',  'europe-central2-docker.pkg.dev/${PROJECT_ID}/gcp-final-task/gcp:${SHORT_SHA}']
-  # [END cloudbuild_python_push_yaml]
+
+  # deploy container image to GKE
+  - name: "gcr.io/cloud-builders/gke-deploy"
+    args:
+      - run
+      - --filename=./kuber/pod.yaml
+      - --image=europe-central2-docker.pkg.dev/${PROJECT_ID}/gcp-final-task/gcp:${SHORT_SHA}
+      - --location=europe-central2-c
+      - --cluster=gcp-cluster
 
 # Store images in Google Artifact Registry
 images:
   - europe-central2-docker.pkg.dev/${PROJECT_ID}/gcp-final-task/gcp:${SHORT_SHA}
-# [END cloudbuild_python_yaml]
+

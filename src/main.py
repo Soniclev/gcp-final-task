@@ -54,11 +54,6 @@ def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     return items
 
 
-@app.get("/get_db", response_model=str)
-def get_db():
-    return SQLALCHEMY_DATABASE_URL
-
-
 @app.get("/healthcheck")
 def healthcheck():
     return "OK"
