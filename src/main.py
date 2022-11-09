@@ -7,7 +7,7 @@ from .database import SessionLocal, engine, SQLALCHEMY_DATABASE_URL
 
 models.Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(docs_url="/")
 
 
 # Dependency
@@ -52,14 +52,3 @@ def create_item_for_user(
 def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     items = crud.get_items(db, skip=skip, limit=limit)
     return items
-
-
-@app.get("/healthcheck")
-def healthcheck():
-    return "OK"
-
-
-@app.get("/")
-async def redirect():
-    response = RedirectResponse(url='/docs')
-    return response
