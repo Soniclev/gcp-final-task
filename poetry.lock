@@ -80,6 +80,21 @@ python-versions = ">=3.7"
 frozenlist = ">=1.1.0"
 
 [[package]]
+name = "alembic"
+version = "1.8.1"
+description = "A database migration tool for SQLAlchemy."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+Mako = "*"
+SQLAlchemy = ">=1.3.0"
+
+[package.extras]
+tz = ["python-dateutil"]
+
+[[package]]
 name = "anyio"
 version = "3.6.2"
 description = "High level compatibility layer for multiple asynchronous event loop implementations"
@@ -453,6 +468,30 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "mako"
+version = "1.2.3"
+description = "A super-fast templating language that borrows the best ideas from the existing templating languages."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+MarkupSafe = ">=0.9.2"
+
+[package.extras]
+babel = ["babel"]
+lingua = ["lingua"]
+testing = ["pytest"]
+
+[[package]]
+name = "markupsafe"
+version = "2.1.1"
+description = "Safely add untrusted strings to HTML/XML markup."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "marshmallow"
 version = "3.18.0"
 description = "A lightweight library for converting complex datatypes to and from native Python datatypes."
@@ -471,7 +510,7 @@ tests = ["pytest", "pytz", "simplejson"]
 
 [[package]]
 name = "marshmallow-dataclass"
-version = "8.5.9"
+version = "8.5.10"
 description = "Python library to convert dataclasses into marshmallow schemas."
 category = "main"
 optional = false
@@ -927,7 +966,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "d1ae146507b0fa0fdad5713296c317742809903a85ed9ed4b621b2f3c4773497"
+content-hash = "03121f0ce0e9dc5562e174b100ba2ba0d4590c78ee722314628f900f0544f74e"
 
 [metadata.files]
 aiohttp = []
@@ -936,6 +975,7 @@ aioredis = []
 aioredis-lock = []
 aioresponses = []
 aiosignal = []
+alembic = []
 anyio = []
 astroid = []
 async-timeout = []
@@ -966,6 +1006,8 @@ iniconfig = []
 isort = []
 json-logging = []
 lazy-object-proxy = []
+mako = []
+markupsafe = []
 marshmallow = []
 marshmallow-dataclass = []
 marshmallow-enum = []
