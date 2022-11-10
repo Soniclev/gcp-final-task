@@ -42,6 +42,8 @@ steps:
       - run
       - '--rm'
       - migrator
+      - bash
+      - '-c'
       - |
         /cloudsql/cloud_sql_proxy -instances=${_INSTANCE_CONNECTION_NAME}=tcp:${_DATABASE_PORT} & sleep 5;
         poetry run alembic upgrade head 
