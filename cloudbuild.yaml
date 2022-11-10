@@ -32,10 +32,10 @@ steps:
         echo "FROM $_IMAGE_NAME
         COPY --from=gcr.io/cloudsql-docker/gce-proxy /cloud_sql_proxy /cloudsql/cloud_sql_proxy" > Dockerfile-proxy;
 
-        docker build -f Dockerfile-proxy -t ${_IMAGE_NAME}-proxy .
+        docker build -f Dockerfile-proxy -t migrator .
 
   # Execute migration
-  - name: "${_IMAGE_NAME}-proxy"
+  - name: "migrator"
     dir: sql-proxy
     secretEnv:
       - DATABASE
@@ -56,7 +56,7 @@ options:
 substitutions:
   _INSTANCE_CONNECTION_NAME: ${PROJECT_ID}:europe-central2:gcp-db
   _DATABASE_PORT: '5432'
-  _IMAGE_NAME: gcr.io/${PROJECT_ID}/gcp
+  _IMAGE_NAME: europe-central2-docker.pkg.dev/${PROJECT_ID}/gcp-final-task/gcp:${SHORT_SHA}
 
 availableSecrets:
   secretManager:
