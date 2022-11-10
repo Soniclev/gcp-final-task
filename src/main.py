@@ -1,9 +1,8 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
-from starlette.responses import RedirectResponse
 
 from . import crud, models, schemas
-from .database import SessionLocal, engine, SQLALCHEMY_DATABASE_URL
+from .database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)
 

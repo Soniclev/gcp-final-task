@@ -8,9 +8,7 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf &&\
 locale-gen en_US.UTF-8
 ENV PYTHONPATH "/root/gcp-final-task/"
 ENV PYTHONUTF8 1
-ENV TZ=Europe/Minsk
 ENV DATABASE=sqlite:///./sql_app.db
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN pip install poetry
 COPY poetry.lock pyproject.toml ./
 RUN poetry install
