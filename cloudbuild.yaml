@@ -39,8 +39,11 @@ steps:
     secretEnv:
       - DATABASE
     args:
+      - run
+      - '--rm'
+      - migrator
       - |
-        run --rm migrator /cloudsql/cloud_sql_proxy -instances=${_INSTANCE_CONNECTION_NAME}=tcp:${_DATABASE_PORT} & sleep 5;
+        /cloudsql/cloud_sql_proxy -instances=${_INSTANCE_CONNECTION_NAME}=tcp:${_DATABASE_PORT} & sleep 5;
         poetry run alembic upgrade head 
 
 
