@@ -1,5 +1,5 @@
 ```shell
-EXPORT GCP_ARTIFACT_LOCATION="europe-central2"
+export GCP_ARTIFACT_LOCATION="europe-central2"
 export GCP_REGION="europe-central2-c"
 export GCP_CLUSTER="gcp-cluster"
 export PROJECT_ID="trusty-acre-367607"
